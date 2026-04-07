@@ -1,15 +1,15 @@
 from fastapi import FastAPI
-from env.emergency_env import EmergencyEnv
-from env.models import Action
+from Environment.emergency_env import EmergencyEnv
+from Environment.models import Action
 
 app = FastAPI()
 
-env = EmergencyEnv()
+envi = EmergencyEnv()
 
 
 @app.post("/reset")
 async def reset():
-    result = await env.reset()
+    result = await envi.reset()
     return {
         "observation": result.observation.dict(),
         "done": result.done
@@ -20,7 +20,7 @@ async def reset():
 async def step(action: dict):
     act = Action(**action)
 
-    result = await env.step(act)
+    result = await envi.step(act)
 
     return {
         "observation": result.observation.dict(),
@@ -32,4 +32,4 @@ async def step(action: dict):
 
 @app.get("/state")
 async def state():
-    return env.state()
+    return envi.state()

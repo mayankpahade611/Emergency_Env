@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 from typing import List, Optional
 from openai import OpenAI
 
-from env.emergency_env import EmergencyEnv
-from env.models import Action
+from Environment.emergency_env import EmergencyEnv
+from Environment.models import Action
 
 load_dotenv()
 
@@ -18,8 +18,8 @@ MODEL_NAME = os.getenv("MODEL_NAME")
 MAX_STEPS = 3
 
 
-def log_start(task: str, env: str, model: str):
-    print(f"[START] task={task} env={env} model={model}", flush=True)
+def log_start(task: str, envi: str, model: str):
+    print(f"[START] task={task} envi={envi} model={model}", flush=True)
 
 
 def log_step(step: int, action: str, reward: float, done: bool, error: Optional[str]):
@@ -89,14 +89,14 @@ Incident:
 
 async def main():
     client = OpenAI(base_url=API_BASE_URL, api_key=API_KEY)
-    env = await EmergencyEnv.from_docker_image(None)
+    envi = await EmergencyEnv.from_docker_image(None)
 
     rewards = []
     steps_taken = 0
 
-    log_start(task="emergency", env="emergency_env", model=MODEL_NAME)
+    log_start(task="emergency", envi="emergency_env", model=MODEL_NAME)
 
-    result = await env.reset()
+    result = await envi.reset()
 
     for step in range(1, MAX_STEPS + 1):
         if result.done:
@@ -120,7 +120,7 @@ async def main():
 
         action = Action(**parsed)
 
-        result = await env.step(action)
+        result = await envi.step(action)
 
         reward = result.reward or 0.0
         done = result.done
@@ -136,7 +136,7 @@ async def main():
     score = sum(rewards) / len(rewards) if rewards else 0.0
     success = score > 0.5
 
-    await env.close()
+    await envi.close()
 
     log_end(success, steps_taken, score, rewards)
 
