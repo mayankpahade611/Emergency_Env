@@ -2,10 +2,9 @@
 title: Emergency OpenEnv
 emoji: 🚨
 colorFrom: red
-colorTo: red    
+colorTo: red
 sdk: docker
-sdk_version: "4.0.0"
-app_file: app.py
+app_port: 7860
 pinned: false
 ---
 
