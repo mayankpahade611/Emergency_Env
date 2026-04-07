@@ -1,0 +1,62 @@
+# ----------------------
+# 🔐 Environment variables
+# ----------------------
+.env
+.env.*
+*.env
+
+# ----------------------
+# 🐍 Python cache & builds
+# ----------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ----------------------
+# 📦 Virtual environment
+# ----------------------
+venv/
+.venv/
+env/
+ENV/
+
+# ----------------------
+# 📁 Logs & temp files
+# ----------------------
+*.log
+*.tmp
+*.swp
+*.swo
+
+# ----------------------
+# 🧪 Testing / coverage
+# ----------------------
+.coverage
+coverage/
+htmlcov/
+
+# ----------------------
+# 🧰 IDE / Editor files
+# ----------------------
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ----------------------
+# 🐳 Docker (optional)
+# ----------------------
+*.tar
+
+# ----------------------
+# 📄 OS files
+# ----------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------
+# 🚫 Secrets / API keys
+# ----------------------
+*.key
+*.pem

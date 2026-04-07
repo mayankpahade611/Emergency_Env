@@ -1,0 +1,7 @@
+name: emergency_env
+description: Emergency situation simulation environment
+
+tasks:
+  - easy_fire
+  - medium_medical
+  - hard_accident
