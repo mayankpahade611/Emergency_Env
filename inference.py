@@ -12,8 +12,8 @@ from Environment.models import Action
 load_dotenv()
 
 API_KEY = os.getenv("HF_TOKEN")
-API_BASE_URL = os.getenv("API_BASE_URL")
-MODEL_NAME = os.getenv("MODEL_NAME")
+API_BASE_URL = os.getenv("API_BASE_URL","https://router.huggingface.co/v1")
+MODEL_NAME = os.getenv("MODEL_NAME","Qwen/Qwen2.5-72B-Instruct")
 
 MAX_STEPS = 3
 
