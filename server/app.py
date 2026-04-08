@@ -4,12 +4,12 @@ from Environment.models import Action
 
 app = FastAPI()
 
-envi = EmergencyEnv()
+env = EmergencyEnv()
 
 
 @app.post("/reset")
 async def reset():
-    result = await envi.reset()
+    result = await env.reset()
     return {
         "observation": result.observation.dict(),
         "done": result.done
@@ -19,8 +19,7 @@ async def reset():
 @app.post("/step")
 async def step(action: dict):
     act = Action(**action)
-
-    result = await envi.step(act)
+    result = await env.step(act)
 
     return {
         "observation": result.observation.dict(),
@@ -32,4 +31,9 @@ async def step(action: dict):
 
 @app.get("/state")
 async def state():
-    return envi.state()
+    return env.state()
+
+
+@app.get("/")
+async def root():
+    return {"message": "Emergency OpenEnv API running"}

@@ -1,17 +1,22 @@
 [project]
-name = "my-openenv"
+name = "emergency-openenv"
 version = "0.1.0"
-description = "Emergency situation OpenEnv environment for AI agents"
+description = "Emergency situation OpenEnv environment"
 authors = [
-    { name = "Mayank", email = "your-email@example.com" }
+    { name = "Mayank, Pradhyuman" }
 ]
+
 dependencies = [
     "fastapi",
     "uvicorn",
     "pydantic",
     "openai",
-    "python-dotenv"
+    "python-dotenv",
+    "openenv-core>=0.2.0"
 ]
+
+[project.scripts]
+server = "server.app:app"
 
 [build-system]
 requires = ["setuptools", "wheel"]
