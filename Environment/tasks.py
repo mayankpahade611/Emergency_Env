@@ -1,53 +1,54 @@
-from typing import List, Dict
+from typing import Callable, Dict
+from Environment.grader import grade
+
+
+def create_task(task_id: str, input_data: dict, truth: dict) -> Dict:
+    return {
+        "id": task_id,
+        "input": input_data,
+        "truth": truth,
+        "grader": lambda action: grade(action, truth)  
+    }
 
 
 TASKS = [
-    {
-        "id": "easy_fire",
-        "input": {
+
+    create_task(
+        "easy_fire",
+        {
             "text": "There is smoke coming out of my kitchen and it smells like something is burning.",
             "location": "home"
         },
-        "truth": {
+        {
             "type": "fire",
             "severity": "high",
-            "actions": [
-                "turn off gas",
-                "evacuate",
-                "call fire department"
-            ]
+            "actions": ["turn off gas", "evacuate", "call fire department"]
         }
-    },
-    {
-        "id": "medium_medical",
-        "input": {
+    ),
+
+    create_task(
+        "medium_medical",
+        {
             "text": "A person has fainted and is not responding.",
             "location": "street"
         },
-        "truth": {
+        {
             "type": "medical",
             "severity": "critical",
-            "actions": [
-                "check pulse",
-                "perform CPR",
-                "call ambulance"
-            ]
+            "actions": ["check pulse", "perform CPR", "call ambulance"]
         }
-    },
-    {
-        "id": "hard_accident",
-        "input": {
+    ),
+
+    create_task(
+        "hard_accident",
+        {
             "text": "Two cars collided and people are injured.",
             "location": "highway"
         },
-        "truth": {
+        {
             "type": "accident",
             "severity": "critical",
-            "actions": [
-                "call ambulance",
-                "control bleeding",
-                "alert police"
-            ]
+            "actions": ["call ambulance", "control bleeding", "alert police"]
         }
-    }
+    ),
 ]

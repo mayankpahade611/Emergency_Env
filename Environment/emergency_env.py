@@ -16,7 +16,7 @@ class EmergencyEnv:
     # 🔹 Helper: explicit grader per task
     def grade_current_task(self, action: Action):
         task = self.get_current_task()
-        return grade(action, task["truth"])
+        return task["grader"](action)
 
     async def reset(self):
         self.index = 0
